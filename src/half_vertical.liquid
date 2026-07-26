@@ -1,26 +1,37 @@
-<div class="layout rounded{% unless trmnl.plugin_settings.custom_fields_values.hide_title_bar ==" true" %} mb--2.5{% endunless %}" style="position: relative; padding: 0;">
-  {% if image_url %}
+{%- assign place_ready = false -%}
+{%- if image_url != blank and title != blank and description != blank and url != blank -%}
+  {%- assign place_ready = true -%}
+{%- endif -%}
+
+{% if place_ready %}
+  <div class="layout rounded{{ title_bar_spacing }}" style="position: relative; padding: 0;">
     <img class="image image-dither image--cover w--full h--full" src="{{ image_url }}" alt="{{ image_alt | default: title }}">
-  {% endif %}
-  <div class="flex flex--col flex--left gap--xsmall" style="position: absolute; left: 12px; right: 84px; bottom: 12px;">
-    <span class="title title--base text--white text-stroke text-stroke--base text-stroke--black" data-clamp="3">
-      {{ title }}
-    </span>
-    <span class="description text--white text-stroke text-stroke--base text-stroke--black" data-clamp="4">
-      {{ description }}
-    </span>
-  </div>
-  {% unless trmnl.plugin_settings.custom_fields_values.hide_qr_code == "true" %}
-    {% if url %}
+    <div class="flex flex--col flex--left gap--xsmall" style="position: absolute; left: 12px; right: 84px; bottom: 12px;">
+      <span class="title title--base text--white text-stroke text-stroke--base text-stroke--black" data-clamp="3">
+        {{ title }}
+      </span>
+      <span class="description text--white text-stroke text-stroke--base text-stroke--black" data-clamp="4">
+        {{ description }}
+      </span>
+    </div>
+    {% unless hide_qr_code %}
       <div class="w--16 h--16 bg--white p--1.5 rounded--small" style="position: absolute; right: 12px; bottom: 12px;">
         {{ url | qr_code }}
       </div>
-    {% endif %}
-  {% endunless %}
-</div>
-{% unless trmnl.plugin_settings.custom_fields_values.hide_title_bar == "true" %}
+    {% endunless %}
+  </div>
+{% endif %}
+
+{% unless place_ready %}
+  <div class="layout layout--col layout--center rounded">
+    <span class="title">Finding today's wonder...</span>
+    <span class="description">Fresh daily discovery will appear here shortly.</span>
+  </div>
+{% endunless %}
+
+{% unless hide_title_bar %}
   <div class="title_bar">
-    <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" alt>
+    <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" alt="Atlas Obscura logo">
     <span class="title">Atlas Obscura - Place of the Day</span>
   </div>
 {% endunless %}
