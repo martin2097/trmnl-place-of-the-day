@@ -12,7 +12,7 @@
   {%- assign hide_title_bar = true -%}
 {%- endif -%}
 
-{%- assign title_bar_spacing = "" -%}
-{%- unless hide_title_bar -%}
-  {%- assign title_bar_spacing = " mb--2.5" -%}
-{%- endunless -%}
+{%- assign place_ready = false -%}
+{%- if image_url != blank and title != blank and description != blank and url != blank -%}
+  {%- assign place_ready = true -%}
+{%- endif -%}

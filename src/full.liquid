@@ -1,8 +1,3 @@
-{%- assign place_ready = false -%}
-{%- if image_url != blank and title != blank and description != blank and url != blank -%}
-  {%- assign place_ready = true -%}
-{%- endif -%}
-
 {% if place_ready %}
   <div class="layout rounded" style="position: relative; padding: 0;">
     <img class="image image-dither image--cover w--full h--full" src="{{ image_url }}" alt="{{ image_alt | default: title }}">
@@ -24,8 +19,8 @@
 
 {% unless place_ready %}
   <div class="layout layout--col layout--center rounded">
-    <span class="title">Finding today's wonder...</span>
-    <span class="description">Fresh daily discovery will appear here shortly.</span>
+    <span class="title">Today's place is temporarily unavailable.</span>
+    <span class="description">TRMNL will try again automatically.</span>
   </div>
 {% endunless %}
 
