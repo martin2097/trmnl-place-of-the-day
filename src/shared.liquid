@@ -17,57 +17,7 @@
   {%- assign title_bar_spacing = " mb--2.5" -%}
 {%- endunless -%}
 
-<style>
-  .atlas-photo {
-    position: relative;
-  }
-
-  .atlas-photo__copy,
-  .atlas-photo__qr {
-    position: absolute;
-    z-index: 1;
-  }
-
-  .atlas-photo__copy {
-    left: var(--atlas-copy-left);
-    right: var(--atlas-copy-right);
-    bottom: var(--atlas-copy-bottom);
-  }
-
-  .atlas-photo__qr {
-    right: var(--atlas-qr-right);
-    bottom: var(--atlas-qr-bottom);
-  }
-
-  .atlas-photo--full {
-    --atlas-copy-left: 20px;
-    --atlas-copy-right: 96px;
-    --atlas-copy-bottom: 18px;
-    --atlas-qr-right: 16px;
-    --atlas-qr-bottom: 16px;
-  }
-
-  .atlas-photo--half-horizontal {
-    --atlas-copy-left: 12px;
-    --atlas-copy-right: 80px;
-    --atlas-copy-bottom: 10px;
-    --atlas-qr-right: 10px;
-    --atlas-qr-bottom: 10px;
-  }
-
-  .atlas-photo--half-vertical {
-    --atlas-copy-left: 12px;
-    --atlas-copy-right: 84px;
-    --atlas-copy-bottom: 12px;
-    --atlas-qr-right: 12px;
-    --atlas-qr-bottom: 12px;
-  }
-
-  .atlas-photo--quadrant {
-    --atlas-copy-left: 8px;
-    --atlas-copy-right: 80px;
-    --atlas-copy-bottom: 8px;
-    --atlas-qr-right: 8px;
-    --atlas-qr-bottom: 8px;
-  }
-</style>
+{% comment %}
+  The polling endpoint already returns the flat image_url, image_alt, title,
+  description, and url fields used below, so no transform is required.
+{% endcomment %}
