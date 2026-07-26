@@ -1,0 +1,55 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+framework_version: 3.1.8
+serverless_language: node
+polling_url: https://atlas-obscura-potd-staging.slowtech.workers.dev/api/place-of-the-day
+polling_headers: ''
+polling_body: ''
+id: 396344
+oauth_enabled: 'false'
+oauth_pkce_enabled: 'no'
+oauth_authorize_url: ''
+oauth_token_url: ''
+oauth_scopes: ''
+oauth_scope_separator: ''
+oauth_refresh_url: ''
+oauth_auth_params: ''
+oauth_token_headers: ''
+oauth_token_site: ''
+oauth_token_params: ''
+oauth_token_request_auth_method: ''
+oauth_body_format: ''
+oauth_token_response_metadata: ''
+oauth_authorization_method: ''
+oauth_refresh_params: ''
+oauth_token_field_name: ''
+oauth_expiry_field_name: ''
+oauth_expiry_strategy: ''
+oauth_fixed_expiry_ms: ''
+custom_fields:
+- keyname: about
+  name: About This Plugin
+  category: travel,images
+  field_type: author_bio
+  description: |
+    Let your screen take you somewhere unexpected. Atlas Obscura - Place of the Day brings one strange, remarkable, or overlooked corner of the world to your TRMNL each day, with a striking photograph, a short introduction, and a QR code whenever you want to explore further.
+    <br/><br/>
+
+    Add the plugin, save it, and enjoy a fresh spark of curiosity every day. Prefer a quieter screen? You can hide the QR code or title bar with a single setting.
+  github_url: https://github.com/martin2097
+  learn_more_url: https://www.atlasobscura.com/
+  email_address: rapavy.mato@gmail.com
+- keyname: hide_qr_code
+  field_type: boolean
+  default: false
+  name: Hide QR code
+- keyname: hide_title_bar
+  field_type: boolean
+  default: false
+  name: Hide title bar
+name: Atlas Obscura - Place of the Day
+refresh_interval: 360
