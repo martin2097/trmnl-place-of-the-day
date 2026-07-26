@@ -1,26 +1,34 @@
-<div class="layout rounded{% unless trmnl.plugin_settings.custom_fields_values.hide_title_bar ==" true" %} mb--2.5{% endunless %}" style="position: relative; padding: 0;">
-  {% if image_url %}
+{%- assign place_ready = false -%}
+{%- if image_url != blank and title != blank and description != blank and url != blank -%}
+  {%- assign place_ready = true -%}
+{% endif %}
+<div class="layout rounded p--0 atlas-photo atlas-photo--half-horizontal{{ title_bar_spacing }}">
+  {% if place_ready %}
     <img class="image image-dither image--cover w--full h--full" src="{{ image_url }}" alt="{{ image_alt | default: title }}">
-  {% endif %}
-  <div class="flex flex--col flex--left gap--xsmall" style="position: absolute; left: 12px; right: 80px; bottom: 10px;">
-    <span class="title title--small md:title--base lg:title--large text--white text-stroke text-stroke--base text-stroke--black" data-clamp="2">
-      {{ title }}
-    </span>
-    <span class="description description--base lg:description--large text--white text-stroke text-stroke--base text-stroke--black" data-clamp="2" data-clamp-lg="3">
-      {{ description }}
-    </span>
-  </div>
-  {% unless trmnl.plugin_settings.custom_fields_values.hide_qr_code == "true" %}
-    {% if url %}
-      <div class="w--16 h--16 bg--white p--1.5 rounded--small" style="position: absolute; right: 10px; bottom: 10px;">
+    <div class="atlas-photo__copy flex flex--col flex--left gap--xsmall">
+      <span class="title title--small md:title--base lg:title--large text--white text-stroke text-stroke--black" data-clamp="2">
+        {{ title }}
+      </span>
+      <span class="description description--base lg:description--large text--white text-stroke text-stroke--black" data-clamp="2" data-clamp-lg="3">
+        {{ description }}
+      </span>
+    </div>
+    {% unless hide_qr_code %}
+      <div class="atlas-photo__qr w--16 h--16 bg--white p--1.5 rounded--small">
         {{ url | qr_code }}
       </div>
-    {% endif %}
+    {% endunless %}
+  {% endif %}
+  {% unless place_ready %}
+    <div class="flex flex--col flex--center text--center gap--small p--4">
+      <span class="title">Finding today's wonder...</span>
+      <span class="description">Atlas Obscura will appear here shortly.</span>
+    </div>
   {% endunless %}
 </div>
-{% unless trmnl.plugin_settings.custom_fields_values.hide_title_bar == "true" %}
+{% unless hide_title_bar %}
   <div class="title_bar">
-    <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" alt>
+    <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" alt="Atlas Obscura logo">
     <span class="title">Atlas Obscura - Place of the Day</span>
   </div>
 {% endunless %}
