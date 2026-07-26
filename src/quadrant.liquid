@@ -1,16 +1,15 @@
 {%- assign title_bar_spacing = "" -%}
 {%- unless hide_title_bar -%}
   {%- assign title_bar_spacing = " mb--3" -%}
-{%- endunless -%}
-
+{% endunless %}
 {% if place_ready %}
   <div class="layout rounded{{ title_bar_spacing }}" style="position: relative; padding: 0;">
     <img class="image image-dither image--cover w--full h--full" src="{{ image_url }}" alt="{{ image_alt | default: title }}">
     <div class="flex flex--col flex--left gap--xsmall" style="position: absolute; left: 8px; right: 80px; bottom: 8px;">
-      <span class="title title--small text--white text-stroke text-stroke--base text-stroke--black" data-clamp="2">
+      <span class="title title--small text--white text-stroke text-stroke--black" data-clamp="2">
         {{ title }}
       </span>
-      <span class="description description--small text--white text-stroke text-stroke--base text-stroke--black" data-clamp="3">
+      <span class="description description--small text--white text-stroke text-stroke--black" data-clamp="3">
         {{ description }}
       </span>
     </div>
@@ -21,14 +20,12 @@
     {% endunless %}
   </div>
 {% endif %}
-
 {% unless place_ready %}
   <div class="layout layout--col layout--center rounded">
     <span class="title">Today's place is temporarily unavailable.</span>
     <span class="description">TRMNL will try again automatically.</span>
   </div>
 {% endunless %}
-
 {% unless hide_title_bar %}
   <div class="title_bar">
     <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}" alt="Atlas Obscura logo">
