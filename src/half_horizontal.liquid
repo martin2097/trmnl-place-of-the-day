@@ -2,22 +2,26 @@
 {%- if image_url != blank and title != blank and description != blank and url != blank -%}
   {%- assign place_ready = true -%}
 {% endif %}
-<div class="layout rounded p--0 atlas-photo atlas-photo--half-horizontal{{ title_bar_spacing }}">
+<div class="layout mashup mashup--1x1 w--full h--full gap--0 rounded p--0{{ title_bar_spacing }}">
   {% if place_ready %}
-    <img class="image image-dither image--cover w--full h--full" src="{{ image_url }}" alt="{{ image_alt | default: title }}">
-    <div class="atlas-photo__copy flex flex--col flex--left gap--xsmall">
-      <span class="title title--small md:title--base lg:title--large text--white text-stroke text-stroke--black" data-clamp="2">
-        {{ title }}
-      </span>
-      <span class="description description--base lg:description--large text--white text-stroke text-stroke--black" data-clamp="2" data-clamp-lg="3">
-        {{ description }}
-      </span>
+    <div class="w--full h--full">
+      <img class="image image-dither image--cover w--full h--full" src="{{ image_url }}" alt="{{ image_alt | default: title }}">
     </div>
-    {% unless hide_qr_code %}
-      <div class="atlas-photo__qr w--16 h--16 bg--white p--1.5 rounded--small">
-        {{ url | qr_code }}
+    <div class="flex flex--row flex--left flex--bottom gap--small p--3 w--full h--full">
+      <div class="flex flex--col flex--left flex--bottom gap--xsmall grow">
+        <span class="title title--small md:title--base lg:title--large text--white text-stroke text-stroke--base text-stroke--black" data-clamp="2">
+          {{ title }}
+        </span>
+        <span class="description description--base lg:description--large text--white text-stroke text-stroke--base text-stroke--black" data-clamp="2" data-clamp-lg="3">
+          {{ description }}
+        </span>
       </div>
-    {% endunless %}
+      {% unless hide_qr_code %}
+        <div class="w--16 h--16 bg--white p--1.5 rounded--small no-shrink">
+          {{ url | qr_code }}
+        </div>
+      {% endunless %}
+    </div>
   {% endif %}
   {% unless place_ready %}
     <div class="flex flex--col flex--center text--center gap--small p--4">
