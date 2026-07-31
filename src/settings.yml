@@ -52,4 +52,5 @@ custom_fields:
   default: false
   name: Hide title bar
 name: Atlas Obscura - Place of the Day
+description: A hidden wonder every day
 refresh_interval: 360
